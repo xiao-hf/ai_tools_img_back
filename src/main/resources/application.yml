@@ -14,9 +14,10 @@ spring:
       host: 127.0.0.1
       port: 6379
       database: 2
-mybatis:
-  check-config-location: true
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
   configuration:
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 knife4j:
   enable: true

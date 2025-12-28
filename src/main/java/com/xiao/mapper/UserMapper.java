@@ -1,37 +1,9 @@
 package com.xiao.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiao.dao.User;
-
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface UserMapper {
-    int deleteByPrimaryKey(Long id);
-
-    int insert(User record);
-
-    int insertOrUpdate(User record);
-
-    int insertOrUpdateSelective(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
-
-    int updateBatch(@Param("list") List<User> list);
-
-    int batchInsert(@Param("list") List<User> list);
-
-    int batchInsertSelectiveUseDefaultForNull(@Param("list") List<User> list);
-
-    List<User> selectByPhoneAndIsDeleted(@Param("phone") String phone, @Param("isDeleted") Boolean isDeleted);
-
-    List<User> selectByIdAndIsDeleted(@Param("id") Long id, @Param("isDeleted") Boolean isDeleted);
+public interface UserMapper extends BaseMapper<User> {
 }

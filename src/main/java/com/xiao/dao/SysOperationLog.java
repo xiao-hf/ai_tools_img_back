@@ -1,5 +1,8 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
@@ -9,11 +12,13 @@ import lombok.Data;
  */
 @Schema(description = "系统操作日志")
 @Data
+@TableName("sys_operation_log")
 public class SysOperationLog {
     /**
      * 日志主键
      */
     @Schema(description = "日志主键")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -71,9 +76,9 @@ public class SysOperationLog {
     private Integer status;
 
     /**
-     * 错误消息
+     * 错误信息
      */
-    @Schema(description = "错误消息")
+    @Schema(description = "错误信息")
     private String errorMsg;
 
     /**

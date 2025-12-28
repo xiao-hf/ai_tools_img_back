@@ -1,13 +1,18 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
 
 @Schema
 @Data
+@TableName("user_role")
 public class UserRole {
     @Schema(description = "")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

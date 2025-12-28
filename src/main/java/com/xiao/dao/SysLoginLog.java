@@ -1,5 +1,8 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
@@ -9,11 +12,13 @@ import lombok.Data;
  */
 @Schema(description = "系统登录日志")
 @Data
+@TableName("sys_login_log")
 public class SysLoginLog {
     /**
      * 日志ID
      */
     @Schema(description = "日志ID")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -59,9 +64,9 @@ public class SysLoginLog {
     private Integer status;
 
     /**
-     * 提示消息
+     * 提示信息
      */
-    @Schema(description = "提示消息")
+    @Schema(description = "提示信息")
     private String msg;
 
     /**
@@ -71,9 +76,9 @@ public class SysLoginLog {
     private Date loginTime;
 
     /**
-     * 登录类型（PASSWORD-密码登录，CODE-验证码登录，SSO-单点登录）
+     * 登录类型（PASSWORD/ CODE / SSO）
      */
-    @Schema(description = "登录类型（PASSWORD-密码登录，CODE-验证码登录，SSO-单点登录）")
+    @Schema(description = "登录类型（PASSWORD/ CODE / SSO）")
     private String loginType;
 
     /**
@@ -83,9 +88,9 @@ public class SysLoginLog {
     private String userAgent;
 
     /**
-     * 登录模块(前台/后台)
+     * 登录模块(前端/后端)
      */
-    @Schema(description = "登录模块(前台/后台)")
+    @Schema(description = "登录模块(前端/后端)")
     private String loginModule;
 
     /**

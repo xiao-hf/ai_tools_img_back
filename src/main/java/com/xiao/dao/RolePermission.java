@@ -1,19 +1,24 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
 
 /**
- * 角色权限关系表
+ * 角色权限关联表
  */
-@Schema(description="角色权限关系表")
+@Schema(description = "角色权限关联表")
 @Data
+@TableName("role_permission")
 public class RolePermission {
     /**
     * 主键ID
     */
     @Schema(description="主键ID")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

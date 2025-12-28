@@ -1,13 +1,19 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
 
 @Schema
 @Data
+@TableName("user")
 public class User {
     @Schema(description = "")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -35,9 +41,9 @@ public class User {
     private String realName;
 
     /**
-     * 所属部门/单位ID
+     * 所属部门单位ID
      */
-    @Schema(description = "所属部门/单位ID")
+    @Schema(description = "所属部门单位ID")
     private Long unitId;
 
     /**
@@ -104,11 +110,12 @@ public class User {
      * 是否删除
      */
     @Schema(description = "是否删除")
+    @TableField("is_deleted")
     private Boolean isDeleted;
 
     /**
-     * 登陆成功token
+     * 登录成功token
      */
-    @Schema(description = "登陆成功token")
+    @Schema(description = "登录成功token")
     private String token;
 }

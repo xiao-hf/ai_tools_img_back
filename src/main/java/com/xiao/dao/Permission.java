@@ -1,5 +1,8 @@
 package com.xiao.dao;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Date;
 import lombok.Data;
@@ -9,11 +12,13 @@ import lombok.Data;
  */
 @Schema(description = "权限信息表")
 @Data
+@TableName("permission")
 public class Permission {
     /**
      * 主键ID
      */
     @Schema(description = "主键ID")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -29,9 +34,9 @@ public class Permission {
     private String content;
 
     /**
-     * 权限类别，url-1，other-2
+     * 权限类别：url-1，other-2
      */
-    @Schema(description = "权限类别，url-1，other-2")
+    @Schema(description = "权限类别：url-1，other-2")
     private Integer type;
 
     /**
