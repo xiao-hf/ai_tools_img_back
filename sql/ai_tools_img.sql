@@ -11,11 +11,44 @@
  Target Server Version : 80041 (8.0.41)
  File Encoding         : 65001
 
- Date: 29/12/2025 05:25:08
+ Date: 31/12/2025 04:57:00
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for ai_icon
+-- ----------------------------
+DROP TABLE IF EXISTS `ai_icon`;
+CREATE TABLE `ai_icon`  (
+  `id` bigint NOT NULL COMMENT '主键',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '名字',
+  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '图片',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ai_icon
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for app_article
+-- ----------------------------
+DROP TABLE IF EXISTS `app_article`;
+CREATE TABLE `app_article`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT 'app_id',
+  `article_id` bigint NULL DEFAULT NULL COMMENT '文章id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of app_article
+-- ----------------------------
+INSERT INTO `app_article` VALUES (1, 'qwer', 2);
+INSERT INTO `app_article` VALUES (2, 'qwer', 3);
+INSERT INTO `app_article` VALUES (3, 'qwer', 4);
 
 -- ----------------------------
 -- Table structure for app_img
@@ -33,6 +66,47 @@ CREATE TABLE `app_img`  (
 
 -- ----------------------------
 -- Records of app_img
+-- ----------------------------
+INSERT INTO `app_img` VALUES (2006052510537564160, 'qwer', '11', '2025-12-31 01:19:23', '2025-12-31 01:19:23', 'http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/b19fbcd9-bdb9-4a9b-8a48-899bf58b153e.jpg');
+
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `imgs` json NULL COMMENT '图片url列表',
+  `locations` json NULL COMMENT '图片位置列表',
+  `content` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '文章文字',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '标题',
+  `title_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '标题图片',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES (1, '[\"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/3914d5b5-21e2-424d-91b8-6de928f40fa4.jpg\", \"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/880077b8-913c-4007-a098-ad7341eebb07.jpg\"]', '[1, 2]', '12', '2025-12-31 01:23:32', NULL, NULL);
+INSERT INTO `article` VALUES (2, '[\"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/c981ac61-230e-469a-aadc-09179b85759e.jpg\", \"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/845005c1-a1f7-4376-9526-c7fb0a05a2ad.jpg\"]', '[14, 5]', '12', '2025-12-31 01:24:19', NULL, NULL);
+INSERT INTO `article` VALUES (3, '[\"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/c7b8ddb2-4a68-4a18-b346-317e05934b24.png\", \"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/6c9629d5-73e5-49e7-b512-1719de6cb4fc.jpg\"]', '[0, 1]', '12', '2025-12-31 02:02:11', NULL, NULL);
+INSERT INTO `article` VALUES (4, '[\"http://127.0.0.1:9000/ai-tools/uploads/2025-12-31/9b3ff7ed-da60-4963-9e23-659ef760c587.png\"]', '[969]', 'sadfdsfdsafdsafsadf啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达\r\n啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达\r\n啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达\r\n啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达\r\n啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达啊都是法师打发斯蒂芬`VS阿大幅度撒发斯蒂芬手打发斯蒂芬萨达', '2025-12-31 03:27:03', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for like_article
+-- ----------------------------
+DROP TABLE IF EXISTS `like_article`;
+CREATE TABLE `like_article`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `article_id` bigint NOT NULL COMMENT '文章id',
+  `user_id` bigint NOT NULL COMMENT '用户id',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `title_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '卡片图片',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of like_article
 -- ----------------------------
 
 -- ----------------------------
@@ -97,6 +171,24 @@ CREATE TABLE `role_permission`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for secret_key
+-- ----------------------------
+DROP TABLE IF EXISTS `secret_key`;
+CREATE TABLE `secret_key`  (
+  `id` bigint NOT NULL,
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '密钥名称',
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '密钥值',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of secret_key
+-- ----------------------------
+INSERT INTO `secret_key` VALUES (1, 'default', 'qwer', '2025-12-31 01:46:11', '2025-12-31 01:46:11');
+
+-- ----------------------------
 -- Table structure for sys_login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_login_log`;
@@ -158,7 +250,7 @@ CREATE TABLE `sys_operation_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_status`(`status` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统操作日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_operation_log
@@ -181,6 +273,10 @@ INSERT INTO `sys_operation_log` VALUES (21, '登录', 'OTHER', '', 'com.xiao.con
 INSERT INTO `sys_operation_log` VALUES (22, '注册', 'OTHER', '', 'com.xiao.controller.UserController.register()', '/user/register', 'POST', '{\"req\":{\"username\":\"aaa\",\"phone\":\"19352311776\",\"password\":\"114514\",\"code\":\"202528\",\"realName\":\"\",\"idCard\":\"\",\"gender\":0,\"email\":\"\",\"avatar\":\"\",\"position\":\"\",\"unitId\":0}}', NULL, 1, NULL, NULL, NULL, '127.0.0.1', 'Chrome', 'Windows', 397, '2025-12-28 13:44:05');
 INSERT INTO `sys_operation_log` VALUES (23, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"phone\":\"19352311776\",\"code\":\"114514\",\"type\":\"1\"}}', NULL, 1, NULL, 4, 'aaa', '127.0.0.1', 'Chrome', 'Windows', 178, '2025-12-28 13:44:10');
 INSERT INTO `sys_operation_log` VALUES (24, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"openId\":\"sfsdafdsfdsdf\"}}', NULL, 1, NULL, 5, 'wx_sfsdafdsfdsdf', '127.0.0.1', 'Chrome', 'Windows', 1038, '2025-12-29 05:22:44');
+INSERT INTO `sys_operation_log` VALUES (25, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"openId\":\"abc\"}}', NULL, 1, NULL, 6, 'wx_abc', '127.0.0.1', 'Chrome', 'Windows', 1057, '2025-12-31 01:11:26');
+INSERT INTO `sys_operation_log` VALUES (26, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"appId\":null,\"secretKey\":\"qwer\",\"openId\":\"mock-openid-1767117495921\"}}', NULL, 1, NULL, 7, 'wx_mock-openid-1767117495921', '127.0.0.1', 'Chrome', 'Windows', 817, '2025-12-31 01:58:17');
+INSERT INTO `sys_operation_log` VALUES (27, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"appId\":null,\"secretKey\":\"qwerr\",\"openId\":\"mock-openid-1767122816614\"}}', NULL, 1, NULL, NULL, NULL, '127.0.0.1', 'Chrome', 'Windows', 96, '2025-12-31 03:26:57');
+INSERT INTO `sys_operation_log` VALUES (28, '登录', 'OTHER', '', 'com.xiao.controller.UserController.login()', '/user/login', 'POST', '{\"req\":{\"appId\":null,\"secretKey\":\"qwer\",\"openId\":\"mock-openid-1767122819481\"}}', NULL, 1, NULL, 8, 'wx_mock-openid-1767122819481', '127.0.0.1', 'Chrome', 'Windows', 67, '2025-12-31 03:27:00');
 
 -- ----------------------------
 -- Table structure for user
@@ -205,18 +301,22 @@ CREATE TABLE `user`  (
   `is_deleted` bit(1) NOT NULL COMMENT '是否删除',
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '登陆成功token',
   `wx_open_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '微信登录的openId',
+  `app_id` int NULL DEFAULT NULL COMMENT '小程序app_id',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username` ASC) USING BTREE,
   UNIQUE INDEX `idx_username`(`username` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '1', '1', '1', 1, '1', '1', 1, '15286610576', '1', '1', b'1', '1970-01-03 00:00:00', '2025-04-11 14:44:41', '2025-12-28 12:45:11', b'0', '259a8f15-5cc6-4cf8-90e8-e93b404d6366', '');
-INSERT INTO `user` VALUES (2, '323', '1', '1', 1, '1', '1', 1, '15286610576', '1', '1', b'0', '1970-01-03 00:00:00', '2025-04-11 16:13:25', '1970-01-02 00:00:00', b'1', NULL, '');
-INSERT INTO `user` VALUES (4, 'aaa', '114514', '', 0, '', '', 0, '19352311776', '', '', b'1', '2025-12-28 13:44:04', '2025-12-28 13:44:04', '2025-12-28 13:44:10', b'0', '2e75f35d-9170-4956-81f5-1edf5766faea', '');
-INSERT INTO `user` VALUES (5, 'wx_sfsdafdsfdsdf', '9cdacf83-a22f-4245-8bc1-9faa84b2e107', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, b'1', '2025-12-29 05:22:43', '2025-12-29 05:22:43', '2025-12-29 05:22:43', b'0', 'b1676e18-2eff-445d-a941-e3a915115a51', 'sfsdafdsfdsdf');
+INSERT INTO `user` VALUES (1, '1', '1', '1', 1, '1', '1', 1, '15286610576', '1', '1', b'1', '1970-01-03 00:00:00', '2025-04-11 14:44:41', '2025-12-28 12:45:11', b'0', '259a8f15-5cc6-4cf8-90e8-e93b404d6366', '', NULL);
+INSERT INTO `user` VALUES (2, '323', '1', '1', 1, '1', '1', 1, '15286610576', '1', '1', b'0', '1970-01-03 00:00:00', '2025-04-11 16:13:25', '1970-01-02 00:00:00', b'1', NULL, '', NULL);
+INSERT INTO `user` VALUES (4, 'aaa', '114514', '', 0, '', '', 0, '19352311776', '', '', b'1', '2025-12-28 13:44:04', '2025-12-28 13:44:04', '2025-12-28 13:44:10', b'0', '2e75f35d-9170-4956-81f5-1edf5766faea', '', NULL);
+INSERT INTO `user` VALUES (5, 'wx_sfsdafdsfdsdf', '9cdacf83-a22f-4245-8bc1-9faa84b2e107', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, b'1', '2025-12-29 05:22:43', '2025-12-29 05:22:43', '2025-12-29 05:22:43', b'0', 'b1676e18-2eff-445d-a941-e3a915115a51', 'sfsdafdsfdsdf', NULL);
+INSERT INTO `user` VALUES (6, 'wx_abc', 'cceabb2b-d55d-474d-8e44-e30d414f9dad', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, b'1', '2025-12-31 01:11:25', '2025-12-31 01:11:25', '2025-12-31 01:11:25', b'0', '1863d367-aba1-45fb-b203-7b7283827bc2', 'abc', NULL);
+INSERT INTO `user` VALUES (7, 'wx_mock-openid-1767117495921', 'cfcbad5f-1530-4019-8f78-485e07e29149', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, b'1', '2025-12-31 01:58:16', '2025-12-31 01:58:16', '2025-12-31 01:58:16', b'0', '6ac5fd91-8be3-4df5-b7dc-74d6b1943f68', 'mock-openid-1767117495921', NULL);
+INSERT INTO `user` VALUES (8, 'wx_mock-openid-1767122819481', '19230248-0fcb-449b-93b4-93995dddf7a1', '', 0, NULL, NULL, NULL, NULL, NULL, NULL, b'1', '2025-12-31 03:26:59', '2025-12-31 03:26:59', '2025-12-31 03:26:59', b'0', '0ba40a7f-e4c1-41d3-b7aa-d6f9c100f679', 'mock-openid-1767122819481', NULL);
 
 -- ----------------------------
 -- Table structure for user_role
@@ -230,7 +330,7 @@ CREATE TABLE `user_role`  (
   `create_by` bigint NULL DEFAULT NULL COMMENT '创建人ID',
   PRIMARY KEY (`id`, `user_id`) USING BTREE,
   UNIQUE INDEX `idx_user_role`(`user_id` ASC, `role_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user_role
@@ -238,5 +338,8 @@ CREATE TABLE `user_role`  (
 INSERT INTO `user_role` VALUES (1, 1, 1, '2025-04-11 16:18:11', NULL);
 INSERT INTO `user_role` VALUES (2, 4, 2, '2025-12-28 13:44:04', NULL);
 INSERT INTO `user_role` VALUES (3, 5, 2, '2025-12-29 05:22:43', NULL);
+INSERT INTO `user_role` VALUES (4, 6, 2, '2025-12-31 01:11:25', NULL);
+INSERT INTO `user_role` VALUES (5, 7, 2, '2025-12-31 01:58:16', NULL);
+INSERT INTO `user_role` VALUES (6, 8, 2, '2025-12-31 03:26:59', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

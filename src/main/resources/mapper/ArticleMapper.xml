@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.xiao.dao.Article">
+    <!--@mbg.generated-->
+    <!--@Table article-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="locations" jdbcType="VARCHAR" property="locations" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="title_img" jdbcType="VARCHAR" property="titleImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, imgs, locations, content, create_time, title, title_img
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update article
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="imgs = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.imgs,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="locations = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.locations,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="content = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="title = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.title,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="title_img = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.titleImg,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into article
+    (imgs, locations, content, create_time, title, title_img)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.imgs,jdbcType=VARCHAR}, #{item.locations,jdbcType=VARCHAR}, #{item.content,jdbcType=VARCHAR}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.title,jdbcType=VARCHAR}, #{item.titleImg,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="batchInsertSelectiveUseDefaultForNull" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into article
+    (imgs, locations, content, create_time, title, title_img)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <choose>
+        <when test="item.imgs != null">
+          #{item.imgs,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.locations != null">
+          #{item.locations,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.content != null">
+          #{item.content,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.createTime != null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.title != null">
+          #{item.title,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.titleImg != null">
+          #{item.titleImg,jdbcType=VARCHAR}
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT
+        </otherwise>
+      </choose>
+      )
+    </foreach>
+  </insert>
+  <insert id="insertOnDuplicateUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Article" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      imgs,
+      locations,
+      content,
+      create_time,
+      title,
+      title_img,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{imgs,jdbcType=VARCHAR},
+      #{locations,jdbcType=VARCHAR},
+      #{content,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{title,jdbcType=VARCHAR},
+      #{titleImg,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      imgs = #{imgs,jdbcType=VARCHAR},
+      locations = #{locations,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      title_img = #{titleImg,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOnDuplicateUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Article" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imgs != null and imgs != ''">
+        imgs,
+      </if>
+      <if test="locations != null and locations != ''">
+        locations,
+      </if>
+      <if test="content != null and content != ''">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="title != null and title != ''">
+        title,
+      </if>
+      <if test="titleImg != null and titleImg != ''">
+        title_img,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="imgs != null and imgs != ''">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="locations != null and locations != ''">
+        #{locations,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null and content != ''">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null and title != ''">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleImg != null and titleImg != ''">
+        #{titleImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="imgs != null and imgs != ''">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="locations != null and locations != ''">
+        locations = #{locations,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null and content != ''">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null and title != ''">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="titleImg != null and titleImg != ''">
+        title_img = #{titleImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

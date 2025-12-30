@@ -24,181 +24,6 @@
     id, user_id, username, ip, browser, os, device_type, `status`, msg, login_time, login_type, 
     user_agent, login_module, create_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from sys_login_log
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from sys_login_log
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into sys_login_log (user_id, username, ip, 
-      browser, os, device_type, 
-      `status`, msg, login_time, 
-      login_type, user_agent, login_module, 
-      create_time)
-    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
-      #{browser,jdbcType=VARCHAR}, #{os,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{msg,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
-      #{loginType,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, #{loginModule,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into sys_login_log
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="username != null and username != ''">
-        username,
-      </if>
-      <if test="ip != null and ip != ''">
-        ip,
-      </if>
-      <if test="browser != null and browser != ''">
-        browser,
-      </if>
-      <if test="os != null and os != ''">
-        os,
-      </if>
-      <if test="deviceType != null and deviceType != ''">
-        device_type,
-      </if>
-      <if test="status != null">
-        `status`,
-      </if>
-      <if test="msg != null and msg != ''">
-        msg,
-      </if>
-      <if test="loginTime != null">
-        login_time,
-      </if>
-      <if test="loginType != null and loginType != ''">
-        login_type,
-      </if>
-      <if test="userAgent != null and userAgent != ''">
-        user_agent,
-      </if>
-      <if test="loginModule != null and loginModule != ''">
-        login_module,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="username != null and username != ''">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="ip != null and ip != ''">
-        #{ip,jdbcType=VARCHAR},
-      </if>
-      <if test="browser != null and browser != ''">
-        #{browser,jdbcType=VARCHAR},
-      </if>
-      <if test="os != null and os != ''">
-        #{os,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceType != null and deviceType != ''">
-        #{deviceType,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="msg != null and msg != ''">
-        #{msg,jdbcType=VARCHAR},
-      </if>
-      <if test="loginTime != null">
-        #{loginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="loginType != null and loginType != ''">
-        #{loginType,jdbcType=VARCHAR},
-      </if>
-      <if test="userAgent != null and userAgent != ''">
-        #{userAgent,jdbcType=VARCHAR},
-      </if>
-      <if test="loginModule != null and loginModule != ''">
-        #{loginModule,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.dao.SysLoginLog">
-    <!--@mbg.generated-->
-    update sys_login_log
-    <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="username != null and username != ''">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="ip != null and ip != ''">
-        ip = #{ip,jdbcType=VARCHAR},
-      </if>
-      <if test="browser != null and browser != ''">
-        browser = #{browser,jdbcType=VARCHAR},
-      </if>
-      <if test="os != null and os != ''">
-        os = #{os,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceType != null and deviceType != ''">
-        device_type = #{deviceType,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="msg != null and msg != ''">
-        msg = #{msg,jdbcType=VARCHAR},
-      </if>
-      <if test="loginTime != null">
-        login_time = #{loginTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="loginType != null and loginType != ''">
-        login_type = #{loginType,jdbcType=VARCHAR},
-      </if>
-      <if test="userAgent != null and userAgent != ''">
-        user_agent = #{userAgent,jdbcType=VARCHAR},
-      </if>
-      <if test="loginModule != null and loginModule != ''">
-        login_module = #{loginModule,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiao.dao.SysLoginLog">
-    <!--@mbg.generated-->
-    update sys_login_log
-    set user_id = #{userId,jdbcType=BIGINT},
-      username = #{username,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=VARCHAR},
-      browser = #{browser,jdbcType=VARCHAR},
-      os = #{os,jdbcType=VARCHAR},
-      device_type = #{deviceType,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=TINYINT},
-      msg = #{msg,jdbcType=VARCHAR},
-      login_time = #{loginTime,jdbcType=TIMESTAMP},
-      login_type = #{loginType,jdbcType=VARCHAR},
-      user_agent = #{userAgent,jdbcType=VARCHAR},
-      login_module = #{loginModule,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
     update sys_login_log
@@ -416,7 +241,7 @@
       )
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_login_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -476,7 +301,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.SysLoginLog" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into sys_login_log
     <trim prefix="(" suffix=")" suffixOverrides=",">

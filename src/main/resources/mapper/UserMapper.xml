@@ -22,12 +22,13 @@
     <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="wx_open_id" jdbcType="VARCHAR" property="wxOpenId" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, username, `password`, real_name, unit_id, `position`, id_card, gender, phone, 
     email, avatar, `enable`, create_time, update_time, last_login_time, is_deleted, token, 
-    wx_open_id
+    wx_open_id, app_id
   </sql>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
@@ -118,6 +119,11 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.wxOpenId,jdbcType=VARCHAR}
         </foreach>
       </trim>
+      <trim prefix="app_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.appId,jdbcType=INTEGER}
+        </foreach>
+      </trim>
     </trim>
     where id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
@@ -129,7 +135,7 @@
     insert into `user`
     (username, `password`, real_name, unit_id, `position`, id_card, gender, phone, email, 
       avatar, `enable`, create_time, update_time, last_login_time, is_deleted, token, 
-      wx_open_id)
+      wx_open_id, app_id)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.username,jdbcType=VARCHAR}, #{item.password,jdbcType=VARCHAR}, #{item.realName,jdbcType=VARCHAR}, 
@@ -137,8 +143,8 @@
         #{item.gender,jdbcType=TINYINT}, #{item.phone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, 
         #{item.avatar,jdbcType=VARCHAR}, #{item.enable,jdbcType=BIT}, #{item.createTime,jdbcType=TIMESTAMP}, 
         #{item.updateTime,jdbcType=TIMESTAMP}, #{item.lastLoginTime,jdbcType=TIMESTAMP}, 
-        #{item.isDeleted,jdbcType=BIT}, #{item.token,jdbcType=VARCHAR}, #{item.wxOpenId,jdbcType=VARCHAR}
-        )
+        #{item.isDeleted,jdbcType=BIT}, #{item.token,jdbcType=VARCHAR}, #{item.wxOpenId,jdbcType=VARCHAR}, 
+        #{item.appId,jdbcType=INTEGER})
     </foreach>
   </insert>
   <insert id="batchInsertSelectiveUseDefaultForNull" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
@@ -146,7 +152,7 @@
     insert into `user`
     (username, `password`, real_name, unit_id, `position`, id_card, gender, phone, email, 
       avatar, `enable`, create_time, update_time, last_login_time, is_deleted, token, 
-      wx_open_id)
+      wx_open_id, app_id)
     values
     <foreach collection="list" item="item" separator=",">
       (
@@ -296,7 +302,16 @@
       </choose>
       <choose>
         <when test="item.wxOpenId != null">
-          #{item.wxOpenId,jdbcType=VARCHAR}
+          #{item.wxOpenId,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.appId != null">
+          #{item.appId,jdbcType=INTEGER}
         </when>
         <!--@ignoreSql-->
         <otherwise>
@@ -330,6 +345,7 @@
       is_deleted,
       token,
       wx_open_id,
+      app_id,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -353,6 +369,7 @@
       #{isDeleted,jdbcType=BIT},
       #{token,jdbcType=VARCHAR},
       #{wxOpenId,jdbcType=VARCHAR},
+      #{appId,jdbcType=INTEGER},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -376,6 +393,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT},
       token = #{token,jdbcType=VARCHAR},
       wx_open_id = #{wxOpenId,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=INTEGER},
     </trim>
   </insert>
   <insert id="insertOnDuplicateUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.User" useGeneratedKeys="true">
@@ -436,6 +454,9 @@
       <if test="wxOpenId != null and wxOpenId != ''">
         wx_open_id,
       </if>
+      <if test="appId != null">
+        app_id,
+      </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -493,6 +514,9 @@
       <if test="wxOpenId != null and wxOpenId != ''">
         #{wxOpenId,jdbcType=VARCHAR},
       </if>
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -549,6 +573,9 @@
       </if>
       <if test="wxOpenId != null and wxOpenId != ''">
         wx_open_id = #{wxOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

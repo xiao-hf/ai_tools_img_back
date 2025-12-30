@@ -134,4 +134,11 @@ public class User {
     @TableField(value = "wx_open_id")
     @Schema(description = "微信登录的openId")
     private String wxOpenId;
+
+    /**
+     * 小程序app_id
+     */
+    @TableField(value = "app_id")
+    @Schema(description = "小程序app_id")
+    private Integer appId;
 }

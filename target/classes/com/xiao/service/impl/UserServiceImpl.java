@@ -19,6 +19,7 @@ import com.xiao.mapper.RoleMapper;
 import com.xiao.mapper.RolePermissionMapper;
 import com.xiao.mapper.UserMapper;
 import com.xiao.mapper.UserRoleMapper;
+import com.xiao.service.SecretKeyService;
 import com.xiao.service.UserService;
 import com.xiao.utils.JwtUtil;
 import com.xiao.utils.MyUtil;
@@ -28,6 +29,7 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,6 +58,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     PermissionMapper permissionMapper;
 
+    @Resource
+    SecretKeyService secretKeyService;
+
     @Override
     public AjaxResult<String> geneCode(String phone) {
         String code = MyUtil.randomNumStr(6);
@@ -71,6 +76,17 @@ public class UserServiceImpl implements UserService {
     public AjaxResult<String> login(ReqWxLogin req) {
         Date now = new Date();
         String openId = req.getOpenId();
+        // appId 与 secretKey 二选一校验
+        if (!StringUtils.hasText(req.getAppId())) {
+            String secretKey = req.getSecretKey();
+            if (!StringUtils.hasText(secretKey)) {
+                return AjaxResult.error("appId 或 secretKey 至少传一个");
+            }
+            boolean pass = secretKeyService.verify(secretKey);
+            if (!pass) {
+                return AjaxResult.error("secretKey 无效");
+            }
+        }
 
         User user = userMapper.selectOne(
             Wrappers.<User>lambdaQuery()

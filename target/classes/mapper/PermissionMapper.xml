@@ -19,127 +19,6 @@
     id, permission_name, content, `type`, remark, create_date, update_date, create_user_id, 
     update_user_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from permission
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from permission
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into permission (permission_name, content, `type`, 
-      remark, create_date, update_date, 
-      create_user_id, update_user_id)
-    values (#{permissionName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{createUserId,jdbcType=BIGINT}, #{updateUserId,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into permission
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="permissionName != null and permissionName != ''">
-        permission_name,
-      </if>
-      <if test="content != null and content != ''">
-        content,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="remark != null and remark != ''">
-        remark,
-      </if>
-      <if test="createDate != null">
-        create_date,
-      </if>
-      <if test="updateDate != null">
-        update_date,
-      </if>
-      <if test="createUserId != null">
-        create_user_id,
-      </if>
-      <if test="updateUserId != null">
-        update_user_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="permissionName != null and permissionName != ''">
-        #{permissionName,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null and content != ''">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null and remark != ''">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null">
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null">
-        #{createUserId,jdbcType=BIGINT},
-      </if>
-      <if test="updateUserId != null">
-        #{updateUserId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.dao.Permission">
-    <!--@mbg.generated-->
-    update permission
-    <set>
-      <if test="permissionName != null and permissionName != ''">
-        permission_name = #{permissionName,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null and content != ''">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null and remark != ''">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null">
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null">
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null">
-        create_user_id = #{createUserId,jdbcType=BIGINT},
-      </if>
-      <if test="updateUserId != null">
-        update_user_id = #{updateUserId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiao.dao.Permission">
-    <!--@mbg.generated-->
-    update permission
-    set permission_name = #{permissionName,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=BIGINT},
-      update_user_id = #{updateUserId,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
     update permission
@@ -285,7 +164,7 @@
       )
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -330,7 +209,7 @@
       update_user_id = #{updateUserId,jdbcType=BIGINT},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.Permission" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into permission
     <trim prefix="(" suffix=")" suffixOverrides=",">

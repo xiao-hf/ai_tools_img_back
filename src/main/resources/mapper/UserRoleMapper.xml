@@ -5,7 +5,7 @@
     <!--@mbg.generated-->
     <!--@Table user_role-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
@@ -14,113 +14,29 @@
     <!--@mbg.generated-->
     id, user_id, role_id, create_time, create_by
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from user_role
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from user_role
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_role (user_id, role_id, create_time, 
-      create_by)
-    values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into user_role
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="roleId != null">
-        role_id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="createBy != null">
-        create_by,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.dao.UserRole">
-    <!--@mbg.generated-->
-    update user_role
-    <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null">
-        create_by = #{createBy,jdbcType=BIGINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiao.dao.UserRole">
-    <!--@mbg.generated-->
-    update user_role
-    set user_id = #{userId,jdbcType=BIGINT},
-      role_id = #{roleId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_by = #{createBy,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
     update user_role
     <trim prefix="set" suffixOverrides=",">
-      <trim prefix="user_id = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.userId,jdbcType=BIGINT}
-        </foreach>
-      </trim>
       <trim prefix="role_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.roleId,jdbcType=BIGINT}
+          when concat(id,'_',user_id) = concat(#{item.id,jdbcType=BIGINT},'_',#{item.userId,jdbcType=BIGINT}) then #{item.roleId,jdbcType=BIGINT}
         </foreach>
       </trim>
       <trim prefix="create_time = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          when concat(id,'_',user_id) = concat(#{item.id,jdbcType=BIGINT},'_',#{item.userId,jdbcType=BIGINT}) then #{item.createTime,jdbcType=TIMESTAMP}
         </foreach>
       </trim>
       <trim prefix="create_by = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=BIGINT}
+          when concat(id,'_',user_id) = concat(#{item.id,jdbcType=BIGINT},'_',#{item.userId,jdbcType=BIGINT}) then #{item.createBy,jdbcType=BIGINT}
         </foreach>
       </trim>
     </trim>
-    where id in
+    where concat(id,'_',user_id) in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=BIGINT}
+      concat(#{item.id,jdbcType=BIGINT},'_',#{item.userId,jdbcType=BIGINT})
     </foreach>
   </update>
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
@@ -179,7 +95,7 @@
       )
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdate" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -212,7 +128,7 @@
       create_by = #{createBy,jdbcType=BIGINT},
     </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
+  <insert id="insertOnDuplicateUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.xiao.dao.UserRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -273,7 +189,7 @@
 <!--auto generated by MybatisCodeHelper on 2025-04-11-->
   <select id="selectByUserId" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from user_role
         <where>
             <if test="userId != null">
