@@ -9,6 +9,7 @@ import com.xiao.dao.Article;
 import com.xiao.exception.BusinessException;
 import com.xiao.http.req.ArticleCreateReq;
 import com.xiao.http.req.ArticleUpdateReq;
+import com.xiao.http.req.ArticleSimpleCreateReq;
 import com.xiao.mapper.AppArticleMapper;
 import com.xiao.mapper.ArticleMapper;
 import com.xiao.service.ArticleService;
@@ -37,6 +38,9 @@ public class ArticleServiceImpl implements ArticleService {
         if (!StringUtils.hasText(req.getAppId())) {
             throw new BusinessException("appId不能为空");
         }
+        if (!StringUtils.hasText(req.getTitle())) {
+            throw new BusinessException("标题不能为空");
+        }
         validateImages(req.getImgs(), req.getLocations());
         if (req.getImgs() == null || req.getImgs().isEmpty()) {
             throw new BusinessException("至少上传一张图片");
@@ -46,6 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setImgs(JSON.toJSONString(req.getImgs()));
         article.setLocations(JSON.toJSONString(req.getLocations()));
         article.setContent(req.getContent());
+        article.setTitle(req.getTitle());
         article.setCreateTime(new Date());
         articleMapper.insert(article);
 
@@ -54,6 +59,31 @@ public class ArticleServiceImpl implements ArticleService {
         relation.setArticleId(article.getId());
         appArticleMapper.insert(relation);
         return toDto(article, req.getAppId());
+    }
+
+    @Override
+    public ArticleDto createWithoutApp(ArticleSimpleCreateReq req) {
+        if (req.getImgs() == null || req.getLocations() == null) {
+            throw new BusinessException("图片和位置列表不能为空");
+        }
+        if (req.getImgs().size() != req.getLocations().size()) {
+            throw new BusinessException("图片数量和位置数量不一致");
+        }
+        if (!StringUtils.hasText(req.getTitle())) {
+            throw new BusinessException("标题不能为空");
+        }
+        if (!StringUtils.hasText(req.getContent())) {
+            throw new BusinessException("内容不能为空");
+        }
+        Article article = new Article();
+        article.setTitleImg(req.getImgs().isEmpty() ? null : req.getImgs().get(0));
+        article.setImgs(JSON.toJSONString(req.getImgs()));
+        article.setLocations(JSON.toJSONString(req.getLocations()));
+        article.setContent(req.getContent());
+        article.setTitle(req.getTitle());
+        article.setCreateTime(new Date());
+        articleMapper.insert(article);
+        return toDto(article, null);
     }
 
     @Override
@@ -72,6 +102,9 @@ public class ArticleServiceImpl implements ArticleService {
         }
         if (StringUtils.hasText(req.getContent())) {
             article.setContent(req.getContent());
+        }
+        if (StringUtils.hasText(req.getTitle())) {
+            article.setTitle(req.getTitle());
         }
         articleMapper.updateById(article);
 

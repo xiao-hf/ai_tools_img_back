@@ -195,6 +195,8 @@
                   <option name="javaModelName" value="Article" />
                   <option name="moduleName" value="spring-security-demo" />
                   <option name="mybatisplusIdType" value="AUTO" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
                   <option name="updateBatch" value="true" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>

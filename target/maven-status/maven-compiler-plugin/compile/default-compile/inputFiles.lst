@@ -3,17 +3,20 @@ D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xi
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\minio\MinioConfig.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\RoleMapper.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\controller\LikeArticleController.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\AiIconCreateReq.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\FileService.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\common\dto\RoleDto.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\ReqRegister.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\common\enums\RespCodeEnum.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\common\enums\RoleEnum.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\impl\AiIconServiceImpl.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\utils\RedisUtil.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\AppImgSaveReq.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\exception\GlobalExceptionHandler.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\AiIconMapper.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\ArticleService.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\AppArticle.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\AppImgUpdateReq.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\controller\AppImgController.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\LikeArticleMapper.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\SecretKeyService.java
@@ -40,6 +43,7 @@ D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xi
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\AppArticleMapper.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\redis\RedisConfig.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\impl\SecretKeyServiceImpl.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\ArticleSimpleCreateReq.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\common\annotation\Log.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\impl\LogServiceImpl.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\Article.java
@@ -54,6 +58,7 @@ D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xi
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\SecretKey.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\SysOperationLog.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\utils\MyUtil.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\AiIconService.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\security\JwtAuthenticationFilter.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\impl\ArticleServiceImpl.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\ArticleCreateReq.java
@@ -61,6 +66,7 @@ D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xi
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\Role.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\ReqLogin.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\RolePermissionMapper.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\controller\AiIconController.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\dao\Permission.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\LikeArticleReq.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\mapper\ArticleMapper.java
@@ -78,3 +84,4 @@ D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xi
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\security\CustomAccessDeniedHandler.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\config\security\JwtAuthenticationEntryPoint.java
 D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\service\AppImgService.java
+D:\A_接单\ai工具换图_已付1500_加急\basec_frame_wxlogin_back\src\main\java\com\xiao\http\req\AiIconUpdateReq.java

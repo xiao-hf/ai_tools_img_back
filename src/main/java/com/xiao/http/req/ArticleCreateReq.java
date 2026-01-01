@@ -18,6 +18,10 @@ public class ArticleCreateReq {
     @NotBlank(message = "文章内容不能为空")
     private String content;
 
+    @Schema(description = "标题")
+    @NotBlank(message = "标题不能为空")
+    private String title;
+
     @Schema(description = "图片地址列表，和 locations 对应")
     @NotNull(message = "图片列表不能为空")
     private List<String> imgs;

@@ -67,6 +67,7 @@ com\xiao\mapper\UserMapper.class
 com\xiao\service\impl\FileServiceImpl.class
 com\xiao\common\dto\RoleDto.class
 com\xiao\exception\BusinessException.class
+com\xiao\http\req\AppImgUpdateReq.class
 com\xiao\mapper\ArticleMapper.class
 com\xiao\utils\SecurityUtil.class
 com\xiao\config\minio\MinioConfig.class

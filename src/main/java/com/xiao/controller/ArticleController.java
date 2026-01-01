@@ -5,6 +5,7 @@ import com.xiao.common.dto.ArticleDto;
 import com.alibaba.fastjson.JSON;
 import com.xiao.http.req.ArticleCreateReq;
 import com.xiao.http.req.ArticleUpdateReq;
+import com.xiao.http.req.ArticleSimpleCreateReq;
 import com.xiao.service.ArticleService;
 import com.xiao.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,14 +43,22 @@ public class ArticleController {
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public AjaxResult<ArticleDto> createWithFiles(@RequestParam @NotBlank(message = "appId不能为空") String appId,
                                                   @RequestParam @NotBlank(message = "content不能为空") String content,
+                                                  @RequestParam @NotBlank(message = "title不能为空") String title,
                                                   @RequestParam @NotBlank(message = "locations不能为空") String locations,
                                                   @RequestParam("files") MultipartFile[] files) {
         ArticleCreateReq req = new ArticleCreateReq();
         req.setAppId(appId);
         req.setContent(content);
+        req.setTitle(title);
         req.setLocations(parseLocations(locations));
         req.setImgs(uploadFiles(files));
         return AjaxResult.success(articleService.create(req));
+    }
+
+    @Operation(summary = "新增文章（仅写入 article 表，不绑定 appId）")
+    @PostMapping("/add")
+    public AjaxResult<ArticleDto> createSimple(@RequestBody @Valid ArticleSimpleCreateReq req) {
+        return AjaxResult.success(articleService.createWithoutApp(req));
     }
 
     @Operation(summary = "更新文章")

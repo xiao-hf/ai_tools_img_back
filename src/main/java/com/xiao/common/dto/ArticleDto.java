@@ -18,6 +18,9 @@ public class ArticleDto {
     @Schema(description = "正文")
     private String content;
 
+    @Schema(description = "标题")
+    private String title;
+
     @Schema(description = "图片地址列表")
     private List<String> imgs;
 

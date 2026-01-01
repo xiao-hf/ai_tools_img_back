@@ -15,7 +15,7 @@ public class AppImg {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.INPUT)
     @Schema(description = "主键")
     private Long id;
 
